@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "Kotha",
+    "slug": "kotha",
+    "version": "1.0.0",
+    "description": "Kotha (কথা) — an LLM-assisted Bangla AAC prototype for people with speech and motor impairments.",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "kotha",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#FDFAF4",
+    "ios": {
+      "icon": "./assets/expo.icon",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "org.kotha.aac",
+      "adaptiveIcon": {
+        "backgroundColor": "#FDFAF4",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "server",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FDFAF4",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 76
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "recordAudioAndroid": false,
+          "enableBackgroundPlayback": false
+        }
+      ],
+      "expo-asset"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
