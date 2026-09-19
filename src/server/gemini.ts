@@ -19,8 +19,15 @@ const ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models';
 /**
  * Per-attempt timeouts; together they stay under the app's 15 s timeout.
  * Measured on Kotha prompts: flash ≈ 1.5–4 s typical (outliers ~9 s), flash-lite ≈ 1.1 s.
+ *
+ * KOTHA_TIMEOUTS_MS overrides them (comma-separated, primary first). Offline
+ * benchmarking wants to wait for the primary model rather than fall back, which
+ * the app must never do. Unset in normal use, so app behaviour is unchanged.
  */
-const TIMEOUTS_MS = [8000, 5000];
+const TIMEOUTS_MS = (process.env.KOTHA_TIMEOUTS_MS ?? '8000,5000')
+  .split(',')
+  .map((v) => Number(v.trim()))
+  .filter((v) => Number.isFinite(v) && v > 0);
 
 const STYLES: SentenceStyle[] = ['direct', 'request', 'permission', 'short', 'warm', 'other'];
 const LEVELS: ConfidenceLevel[] = ['high', 'medium', 'low'];
